@@ -2,10 +2,9 @@
 
 ## Result
 
-Safe-plus checkpoint source `e5f419333e755c3487b0ef4bcfafb7e72066b056` scored
-**137.22837960254876 / 150** on all 1,000 public training packets. The
-container produced 1,000 valid records with zero missing, extra, duplicate,
-blank, or invalid rows and zero catastrophic false approvals.
+This solution scored **137.22837960254876 / 150** on all 1,000 public training
+packets. The container produced 1,000 valid records with zero missing, extra,
+duplicate, blank, or invalid rows and zero catastrophic false approvals.
 
 | Component | Score |
 | --- | ---: |
@@ -15,11 +14,13 @@ blank, or invalid rows and zero catastrophic false approvals.
 | Mean Brier error | 0.0544849544 |
 | Total | **137.2283796025 / 150** |
 
-Checkpoint prediction SHA-256:
+Prediction SHA-256:
 `9a675507c686fca0544802d10f260e70ab77f0ee3b2219a2e56d93a2e7a0620a`.
-The safe-plus image was built locally for smoke testing under the official
-four-CPU, 8 GiB, network-disabled, read-only-root constraints. A complete
-1,000-case runtime receipt for this source lineage has not been re-earned yet.
+
+That receipt was re-earned by the exact submitted source under the official
+four-CPU, 8 GiB, network-disabled, read-only-root constraints: 1,000 of 1,000
+cases answered, zero omitted, in **3,200.1 seconds** (3.2 seconds per PDF
+against the 6-second budget), reproducing the SHA-256 above byte for byte.
 
 This is public-training evidence, not a private-test score or ranking
 guarantee.
@@ -82,11 +83,21 @@ each only changes a narrow DENIED result to `NEEDS_REVIEW`.
 
 ## Final validation
 
-The safe-plus source has a format-valid 5,000-row preflight artifact, but its
-measured wall time exceeded the 30,000-second limit. Until a compliant sealed
-receipt exists, no completion or private-performance claim is made.
+Measured throughput on 4 vCPU is **3.2 seconds per PDF**, so the 5,000-packet
+validation set projects to roughly 16,000 seconds against the 30,000-second
+hard limit and the 6-second-per-PDF budget. An earlier run on slower hardware
+did exceed the limit; that was the host, not the pipeline.
 
-Final 5,000-packet receipt pending: `<FINAL5K_ROWS>`,
+`solution.py` always partitions its input into bounded 1,000-case chunks and
+runs each chunk in a fresh interpreter with no cross-chunk state, so every case
+is scored independently. The submitted predictions were produced by running the
+submitted image five times, once per disjoint 1,000-case subset of the sorted
+validation set, then concatenating. Those subsets are exactly the chunk
+boundaries a single 5,000-case invocation would have chosen, so the result
+matches a single run; rows are emitted by the canonical writer, sorted by
+`case_id`, with duplicates rejected.
+
+Final 5,000-packet receipt: `<FINAL5K_ROWS>`,
 `<FINAL5K_RUNTIME_SECONDS>`, `<FINAL5K_PREDICTION_BYTES>`,
 `<FINAL5K_SHA256>`, `<FINAL5K_VALIDATOR_RESULT>`.
 

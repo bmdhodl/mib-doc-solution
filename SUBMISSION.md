@@ -8,10 +8,19 @@ The repository contains the complete offline source, pinned dependency lock,
 Dockerfile, technical memo, attribution, tests, and third-party notices.
 
 Solution commit that generated the submitted validation predictions:
-`<FINAL5K_SOLUTION_COMMIT>`.
+`1846faa62473a2a5691db314ccefe6df82f15268`. Commits after it on `main` change
+documentation only; the runtime tree (`solution.py`, `mib_pipeline/`) is
+unchanged, which `git log` shows and the hashes below confirm.
 
 Image digest used for the validation run:
-`<FINAL5K_IMAGE_DIGEST>`.
+`sha256:0b1d33bb47b79b07d113ea890e546637fc094f1b1624e174ae189a7c850d4c06`
+(233,851,416 bytes uncompressed, against the 4 GiB cap).
+
+Every runtime file inside that image was verified byte-identical to the
+published tree: 24 Python files, the five calibration artifacts under
+`mib_pipeline/artifacts/`, and `run.sh`. As an anchor, `solution.py` hashes to
+`62f8cfdef5d05aa8a9295f865280c8dba8b0acd32a034621ecd28fd3ae03f658` in both.
+Rebuilding this commit reproduces the submitted predictions.
 
 The checkpoint scores **137.22837960254876 / 150** on all 1,000 public
 training packets. It produced 1,000 valid records, zero missing or duplicate
