@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+mib_pipeline/__pycache__/
+mib_pipeline/*.py[cod]
+predictions.jsonl
+.git/
+.worktrees/
+.venv/
+.cache/
+data/
+artifacts/
+docs/
+tests/
+models/

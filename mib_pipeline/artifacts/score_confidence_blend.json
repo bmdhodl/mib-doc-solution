@@ -1,0 +1,28 @@
+{
+  "method": "5-fold OOF Laplace + blend with raw confidence (blend=0.45)",
+  "blend": 0.45,
+  "table": {
+    "APPROVED|fee": 0.9955,
+    "DENIED|fee": 0.9757,
+    "DENIED|nofee": 0.6667,
+    "NEEDS_REVIEW|fee|m0": 0.976,
+    "NEEDS_REVIEW|fee|m1": 0.5459,
+    "NEEDS_REVIEW|fee|m2": 0.72,
+    "NEEDS_REVIEW|fee|m3": 0.5,
+    "NEEDS_REVIEW|fee|m4": 0.6667,
+    "NEEDS_REVIEW|nofee|m1": 0.875,
+    "NEEDS_REVIEW|nofee|m2": 0.963,
+    "NEEDS_REVIEW|nofee|m3": 0.8571
+  },
+  "defaults_for_missing_count": {
+    "applicant_name": "unknown",
+    "species_code": "unknown",
+    "home_world": "unknown",
+    "visa_class": "unknown",
+    "sponsor_id": "SPN-0000",
+    "arrival_date": "1900-01-01",
+    "declared_purpose": "unknown",
+    "risk_flags": "none",
+    "fee_status": "unknown"
+  }
+}

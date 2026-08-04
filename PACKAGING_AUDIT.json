@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "audit_type": "submission_packaging_and_provenance",
+  "audit_status": "checkpoint_only_pending_official_receipt",
+  "audited_runtime_source_commit": "e5f419333e755c3487b0ef4bcfafb7e72066b056",
+  "runtime_files_unchanged_by_audit_commit": false,
+  "organizer_contract": {
+    "repository_commit": "38ce8883dea9f87c27a8a95f134e54fe8b673064",
+    "docker_image_max_bytes": 4294967296,
+    "individual_model_max_bytes": 262144000,
+    "total_models_max_bytes": 1073741824,
+    "predictions_file_max_bytes": 26214400,
+    "network_allowed": false,
+    "gpu_allowed": false
+  },
+  "derivative_lineage": [
+    {
+      "component": "organizer schemas, evaluator, field manual, and public data",
+      "repository": "https://github.com/8090-inc/mib-doc-challenge",
+      "commit": "38ce8883dea9f87c27a8a95f134e54fe8b673064",
+      "license": "MIT"
+    },
+    {
+      "component": "render-first OCR core",
+      "repository": "https://github.com/strobl/mib-doc-solution",
+      "commit": "d6752ecd88220e8fcd07f6d6825d2b8d642c9edc",
+      "license": "MIT"
+    },
+    {
+      "component": "clean render-first fork",
+      "repository": "https://github.com/Abhishek21g/mib-doc-challenge-solution",
+      "commit": "08947bd72b0058d5803d9bfe08428cd7311485b7",
+      "license": "MIT"
+    },
+    {
+      "component": "visible-layout scoring concepts",
+      "repository": "https://github.com/arjunkshah12345-hash/mib-doc-solution",
+      "commit": "798ad2277a89a25cd3dfc596be572df4aade55c6",
+      "license": "MIT",
+      "notice": "third_party_licenses/PublicSolutions/LICENSE-Arjun"
+    },
+    {
+      "component": "native-image MaxFilter retry",
+      "repository": "https://github.com/kirtandesai/mib-doc-solution",
+      "commit": "288da617686a115ef1b27fcf751dea9e61948226",
+      "license": "MIT",
+      "notice": "third_party_licenses/PublicSolutions/LICENSE-Kirtan"
+    }
+  ],
+  "public_train_selected_runtime_surfaces": {
+    "identity_policy": "No case IDs, filenames, hashes, applicant names, sponsor identities, or per-case predictions are runtime features.",
+    "layout_consensus_guard_tables": [
+      {
+        "symbol": "_LC_TRAP_VISA_PURPOSE",
+        "entries": 2,
+        "effect": "block approval"
+      },
+      {
+        "symbol": "_LC_TRAP_VISA_PURPOSE_SIG",
+        "entries": 14,
+        "effect": "block approval"
+      },
+      {
+        "symbol": "_LC_WAIVED_ONLY_TRAP_VISA_PURPOSE_SIG",
+        "entries": 2,
+        "effect": "block waived approval"
+      },
+      {
+        "symbol": "_LC_WAIVED_TRAP_OVERRIDES",
+        "entries": 1,
+        "effect": "narrow waived override"
+      }
+    ],
+    "layout_consensus_visa_allowlist_entries": 4,
+    "train_calibrated_terminal_ensemble": {
+      "needs_review_to_denied_boundaries": 11,
+      "denied_to_needs_review_boundaries": 1,
+      "creates_approved": false,
+      "changed_row_confidence": "8/13"
+    },
+    "safe_plus_review_guards": {
+      "identity_conflict_guard": "ANDROMEDAN/xenobotany, terminal confidence <= 0.65",
+      "diplomatic_guard": "DIP-1/diplomatic, no emitted risk flags, terminal confidence <= 0.65",
+      "creates_approved": false
+    },
+    "bounded_visible_ocr_routes": {
+      "fee_receipt_cells": 1,
+      "unresolved_sponsor_cells": 3,
+      "authority_note_cells": 1,
+      "stale_redacted_visa_cells": 1
+    },
+    "calibration_artifacts": [
+      {
+        "path": "mib_pipeline/artifacts/confidence_calibration.json",
+        "artifact_id": "semantic-trace-calibration-v2-tuning700",
+        "bytes": 68169,
+        "sha256": "848306a09afdbe0075ab4ef8059e33cea6dd63793dae46b8d4301cc267cec738"
+      },
+      {
+        "path": "mib_pipeline/artifacts/grouped_confidence_calibration.json",
+        "artifact_id": "grouped-visible-path-platt-trainfit800-v1",
+        "bytes": 2727,
+        "sha256": "d7c5bbc4f72eefc577ba9fe9e827bb6f3b5317a716014c6a2cf1b51d6687660a"
+      },
+      {
+        "path": "mib_pipeline/artifacts/output_confidence_recalibration.json",
+        "artifact_id": "output-review-confidence-ridge-v1",
+        "bytes": 2239,
+        "sha256": "cccfd667988f653c6569ce447a8c5751ba7a6bb90d3b79e8b5e8b893c3524762"
+      },
+      {
+        "path": "mib_pipeline/artifacts/score_confidence_blend.json",
+        "artifact_id": "five-fold-oof-confidence-blend",
+        "bytes": 786,
+        "sha256": "129feb88eb08b2583a5ed88a9cee5fa9965f7bb0d68480783d822796389bcff6"
+      }
+    ],
+    "policy_exceptions": {
+      "path": "mib_pipeline/artifacts/policy_exceptions.json",
+      "entries": 0,
+      "bytes": 97,
+      "sha256": "4fbf2c14a7e1016dc1b3ff10ada8b4a55b58ecd52a542ebfd0d8a1ab46c866eb"
+    }
+  },
+  "model_artifacts": {
+    "individual_cap_status": "pass",
+    "total_cap_status": "pass",
+    "largest_bytes": 21234383,
+    "total_bytes_including_ocr_and_calibration": 46499342,
+    "artifacts": [
+      {
+        "path": "rapidocr/models/PP-OCRv6_det_small.onnx",
+        "bytes": 9929594,
+        "sha256": "090f04abcd9d9a7498bc4ebf677e4cb9bdce1fe4197ddb7e529f1ef44e1ff94f"
+      },
+      {
+        "path": "rapidocr/models/PP-OCRv6_rec_small.onnx",
+        "bytes": 21234383,
+        "sha256": "6f327246b50388f3c176ae304bd95767ea6dc0c9ae92153ef8cbe210b3c14884"
+      },
+      {
+        "path": "rapidocr/models/ch_ppocr_mobile_v2.0_cls_mobile.onnx",
+        "bytes": 585532,
+        "sha256": "e47acedf663230f8863ff1ab0e64dd2d82b838fceb5957146dab185a89d6215c"
+      },
+      {
+        "path": "tesseract/tessdata/eng.traineddata",
+        "bytes": 4113088,
+        "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+      },
+      {
+        "path": "tesseract/tessdata/osd.traineddata",
+        "bytes": 10562727,
+        "sha256": "9cf5d576fcc47564f11265841e5ca839001e7e6f38ff7f7aacf46d15a96b00ff"
+      }
+    ],
+    "repo_calibration_artifacts_total_bytes": 74018
+  },
+  "docker_image": {
+    "cap_status": "pass",
+    "measured_image_id": "sha256:602ff806af8e6100d4cf615c9b076ef5ffc6c9234bb2d998e9c4b78ad532c24d",
+    "measured_image_bytes": 233851139,
+    "cap_utilization": 0.05444730003364384,
+    "runtime_user": "root",
+    "exact_current_image_rebuilt": true,
+    "tracked_runtime_and_license_files_compared": 0,
+    "payload_extra_files": 0,
+    "payload_mismatched_files": 0,
+    "evidence_note": "The image was rebuilt from the safe-plus checkpoint source and smoke-tested; the full byte-for-byte packaging audit is still pending."
+  },
+  "public_train_evaluation": {
+    "status": "checkpoint_re_evaluated_no_runtime_receipt",
+    "submitted_records": 1000,
+    "missing_cases": 0,
+    "extra_cases": 0,
+    "duplicate_case_ids": 0,
+    "blank_records": 0,
+    "invalid_records": 0,
+    "catastrophic_false_approvals": 0,
+    "runtime_seconds": null,
+    "predictions_bytes": 321163,
+    "predictions_sha256": "9a675507c686fca0544802d10f260e70ab77f0ee3b2219a2e56d93a2e7a0620a",
+    "evaluation_sha256": null,
+    "case_scores_sha256": null,
+    "field_extraction_score": 45.11777777777778,
+    "adjudication_score": 74.29,
+    "calibration_score": 17.820601824770968,
+    "total_score": 137.22837960254876,
+    "independent_linux_evaluator_reproduction": "re-evaluated_from_checkpoint_predictions_no_runtime_receipt"
+  },
+  "final_validation": {
+    "status": "pending_official_receipt",
+    "expected_records": 5000,
+    "submitted_records": null,
+    "missing_cases": null,
+    "duplicate_case_ids": null,
+    "runtime_seconds": null,
+    "predictions_bytes": null,
+    "predictions_sha256": null,
+    "validator_status": null
+  },
+  "hardcoding_and_prediction_audit": {
+    "status": "pass",
+    "runtime_python_files_scanned": 24,
+    "exact_case_id_literals": 0,
+    "tracked_validation_prediction_files": 0,
+    "runtime_case_specific_lookup_artifacts": 0,
+    "docker_copy_policy": "explicit allowlist",
+    "docker_context_excludes": [
+      "data/",
+      "artifacts/",
+      "tests/",
+      "models/",
+      "predictions.jsonl"
+    ],
+    "audit_only_case_named_artifacts_in_source_repo": true,
+    "audit_only_artifacts_shipped_in_image": false
+  },
+  "input_hashes": {
+    "Dockerfile": "8876c9bbb75cce5defcf0648b27c3d595616d8e9639626c605e6ddc6a9e16fc9",
+    "requirements.lock": "ea72c0538128cfd2f21332d7cc34859d93cf896673039638f3c63bc8bc372744",
+    ".dockerignore": "2c489138be1d3c7272273eb115d1196680b9946fdf59582edc9468ec1f593e0c",
+    "third_party_licenses/MODEL_PROVENANCE.md": "c449cb9e0b376db1e2d993b0b71cd3712977161558cf2e368da330cd481e9eed",
+    "third_party_licenses/README.md": "cbd9e5468b8663c1dc941b0d44e499c84487f9f7c7eb047fdc9a935f0ce9732a"
+  }
+}

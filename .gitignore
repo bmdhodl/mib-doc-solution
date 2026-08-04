@@ -1,0 +1,14 @@
+.worktrees/
+.venv/
+.cache/
+.context/
+data/
+artifacts/**
+!artifacts/.gitkeep
+!artifacts/train-evaluation.json
+!artifacts/train-output.sha256
+!artifacts/score-audit.md
+__pycache__/
+.pytest_cache/
+*.py[cod]
+predictions.jsonl
