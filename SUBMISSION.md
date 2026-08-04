@@ -57,7 +57,9 @@ external service, or runtime model download.
 
 ## Final validation receipt
 
-The exact frozen image was run against all 5,000 unlabeled validation packets.
+The exact frozen image was run against the 5,000-packet unlabeled validation
+set. The row count actually submitted, and the validator's verbatim output for
+it, are recorded in the receipt at the end of this section.
 
 ### How the predictions were generated
 
