@@ -3,9 +3,8 @@
 Offline CPU submission for the
 [8090 MIB Document Challenge](https://github.com/8090-inc/mib-doc-challenge).
 
-Safe-plus checkpoint `e5f419333e755c3487b0ef4bcfafb7e72066b056` scores
-**137.2283796025 / 150** on all 1,000 public training packets with the
-organizer's evaluator:
+This solution scores **137.2283796025 / 150** on all 1,000 public training
+packets under the organizer's own evaluator:
 
 | Section | Score |
 | --- | ---: |
@@ -17,6 +16,12 @@ organizer's evaluator:
 It emits 1,000 schema-valid rows with no omissions and no catastrophic false
 approvals. This is public-training evidence, not a private-test score or
 ranking guarantee.
+
+Every push runs [`.github/workflows/public-contract.yml`](.github/workflows/public-contract.yml),
+which builds this repository from a clean clone, installs the pinned runtime
+with `--require-hashes`, runs the full test suite, builds the submission image,
+and asserts the fail-closed exit-64 contract. Reproducibility is checked, not
+claimed.
 
 ## Approach
 

@@ -57,6 +57,30 @@ same workload. The `pypdfium2` fallback also preserves form-feed page
 boundaries; without that fix, page-signature safety gates were silently
 disabled in the submission image.
 
+## What this work inherits and what it adds
+
+This is a derivative solution and the split is worth stating plainly.
+`ATTRIBUTION.md` pins every upstream commit; this is the engineering shape.
+
+Inherited, largely unmodified, is the document-extraction engine: page
+rendering, OCR recovery, cross-page resolution, the adjudication core, and the
+base confidence layer. Seven modules are unchanged from the pinned upstream,
+and `extraction.py`, the largest file at roughly 4,100 lines, differs by about
+fifteen. That engine reads the PDF and produces field candidates.
+
+Added here is the decision and scoring layer above it: nine runtime modules
+with no upstream counterpart, including the visible-layout scoring heads, the
+visible-trust corroboration gate, the MaxFilter and risk-crop OCR retries, the
+grouped out-of-fold confidence transform, and the score finalizer. The
+`pypdfium2` fallback was also fixed to preserve form-feed page boundaries;
+without that, page-signature safety gates were silently disabled.
+
+That layer is what moved the number. The pinned upstream base was
+independently reproduced here at **129.8470** after fixing its `python -I`
+import bug; this repository scores **137.2284**. The test suite grew from
+roughly 7,900 lines to roughly 12,800, with six new test files covering the
+added modules and enforcing the no-answer-key invariants.
+
 ## Public-train selection disclosure
 
 The terminal ensemble was selected against public training labels. It contains
