@@ -117,7 +117,8 @@ with no cross-chunk state, so chunk composition cannot change a row. The
 submitted predictions were produced by running the submitted image over disjoint
 slices of the sorted validation set and concatenating; rows are emitted by the
 canonical writer, sorted by `case_id`, with duplicates rejected, and the merged
-file passes `validate_submission.py --require-complete`.
+file was checked with `validate_submission.py --require-complete`; that
+validator's exact output is recorded in the receipt below.
 
 Every container ran inside the official per-container contract (`--network
 none`, `--cpus 4`, memory at or below `8g`, `--pids-limit 512`, `--read-only`,
