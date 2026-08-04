@@ -121,9 +121,22 @@ boundaries a single 5,000-case invocation would have chosen, so the result
 matches a single run; rows are emitted by the canonical writer, sorted by
 `case_id`, with duplicates rejected.
 
-Final 5,000-packet receipt: `<FINAL5K_ROWS>`,
-`<FINAL5K_RUNTIME_SECONDS>`, `<FINAL5K_PREDICTION_BYTES>`,
-`<FINAL5K_SHA256>`, `<FINAL5K_VALIDATOR_RESULT>`.
+Final 5,000-packet receipt:
+
+- Rows: `<FINAL5K_ROWS>`
+- Runtime: `<FINAL5K_RUNTIME_SECONDS>`
+- Prediction bytes: `<FINAL5K_PREDICTION_BYTES>`
+- Prediction SHA-256: `<FINAL5K_SHA256>`
+- Validator (`--require-complete`): `<FINAL5K_VALIDATOR_RESULT>`
+
+One case, `MIB-101292`, is worth recording. An earlier single-container run on
+this host emitted it as a fail-closed all-`unknown` row at confidence 0.0 after
+a native fault in `difflib` (`unknown opcode 220`); the same host segfaulted a
+later chunk outright. The submitted run extracts that case normally. Comparing
+the two runs over the 2,000 cases they share, 1,999 rows are byte-identical and
+that single row is the only difference, which is both a determinism check
+across execution topologies and evidence that the fail-closed path degrades a
+case rather than corrupting it.
 
 ## Failure modes
 
