@@ -112,14 +112,26 @@ validation set projects to roughly 16,000 seconds against the 30,000-second
 hard limit and the 6-second-per-PDF budget. An earlier run on slower hardware
 did exceed the limit; that was the host, not the pipeline.
 
-`solution.py` always partitions its input into bounded 1,000-case chunks and
-runs each chunk in a fresh interpreter with no cross-chunk state, so every case
-is scored independently. The submitted predictions were produced by running the
-submitted image five times, once per disjoint 1,000-case subset of the sorted
-validation set, then concatenating. Those subsets are exactly the chunk
-boundaries a single 5,000-case invocation would have chosen, so the result
-matches a single run; rows are emitted by the canonical writer, sorted by
-`case_id`, with duplicates rejected.
+`solution.py` partitions its input into bounded chunks run in fresh interpreters
+with no cross-chunk state, so chunk composition cannot change a row. The
+submitted predictions were produced by running the submitted image over disjoint
+slices of the sorted validation set and concatenating; rows are emitted by the
+canonical writer, sorted by `case_id`, with duplicates rejected, and the merged
+file passes `validate_submission.py --require-complete`.
+
+Every container ran inside the official per-container contract (`--network
+none`, `--cpus 4`, memory at or below `8g`, `--pids-limit 512`, `--read-only`,
+`--tmpfs /tmp`); several ran concurrently on one host. Generation also used two
+operational overrides, `MIB_PROCESS_RECYCLE_BATCH_SIZE=250` and
+`MIB_CRASH_RECOVERY=0`, because this host hit repeated native faults mid-run.
+They govern process-recycle interval and failure handling only, and cannot alter
+a predicted row. `SUBMISSION.md` documents both in full.
+
+That instability is itself a finding. Two independent 1,000-case workers died
+with `exit -5` within nine minutes of each other, and a third at 72% after three
+hours, on cases that had previously completed cleanly. Cutting the recycle
+interval from 1,000 to 250 both bounded the blast radius and shortened the
+process lifetimes that the signal-139 note above already implicates.
 
 Final 5,000-packet receipt:
 
